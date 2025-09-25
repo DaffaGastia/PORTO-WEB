@@ -773,7 +773,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Apply 
     const debouncedScrollHandler = debounce(() => {
-        // Add any
     }, 10);
     
     window.addEventListener('scroll', debouncedScrollHandler);
