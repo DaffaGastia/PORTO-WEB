@@ -384,8 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         document.body.appendChild(themeToggle);
-        
-        // Cek preferensi tema dari localStorage atau sistem
+
         const savedTheme = localStorage.getItem('theme');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
@@ -397,11 +396,9 @@ document.addEventListener('DOMContentLoaded', function() {
         themeToggle.addEventListener('click', function() {
             document.body.classList.toggle('light-theme');
             const isLight = document.body.classList.contains('light-theme');
-            
-            // Simpan preferensi
+
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            
-            // Ganti ikon
+
             this.innerHTML = isLight 
                 ? '<i class="fas fa-sun"></i>' 
                 : '<i class="fas fa-moon"></i>';
@@ -418,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     createThemeToggle();
 
-    // Cursor effect
+    // Cursor
     let mouseX = 0;
     let mouseY = 0;
     let trailElements = [];
@@ -460,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Only desktop
+    // desktop
     if (window.innerWidth > 768) {
         createCursorTrail();
     }
@@ -543,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
 
-    // REFRESH  dan scroll ke #home setelah selesai
+    // REFRESh scroll ke #home 
     createLoader();
 
     setTimeout(() => {
@@ -556,7 +553,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 2200); 
     
-    // Show loader only on first visit
     if (!sessionStorage.getItem('visited')) {
         createLoader();
         sessionStorage.setItem('visited', 'true');
@@ -570,12 +566,10 @@ document.addEventListener('DOMContentLoaded', function() {
         filterButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 const filter = this.getAttribute('data-filter');
-                
-                // Update active button
+
                 filterButtons.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                
-                // Filter projects
+
                 projectCards.forEach(card => {
                     if (filter === 'all' || card.getAttribute('data-category') === filter) {
                         card.style.display = 'block';
@@ -754,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return modal;
     }
 
-    // Initialize all features
+    // Initialize 
     initLazyLoading();
     animateSkillBars();
     
@@ -795,7 +789,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (konamiCode.join(',') === konamiSequence.join(',')) {
             showNotification('🎉 Konami Code activated! You found the easter egg!', 'success');
-            // Add fun 
             document.body.style.animation = 'rainbow 2s ease-in-out';
             setTimeout(() => {
                 document.body.style.animation = '';
