@@ -1,7 +1,5 @@
-// DOM
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // Mobile Nav
+
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -11,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         navToggle.classList.toggle('active');
     });
 
-    // Close 
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
@@ -19,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Smooth scrolling links
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -36,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Navbar back
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
@@ -46,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Active nav link highlight
     window.addEventListener('scroll', function() {
         const sections = document.querySelectorAll('section');
         const scrollPos = window.scrollY + 100;
@@ -66,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Typing animation for hero title
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
         const text = heroTitle.innerHTML;
@@ -84,15 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(typeWriter, 1000);
     }
 
-    // Skill hover effects with detailed information
     const skillItems = document.querySelectorAll('.skill-item');
     
     skillItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
             const skillName = this.getAttribute('data-skill');
             const skillLevel = this.querySelector('.skill-level').textContent;
-            
-            // Create tooltip
+
             const tooltip = document.createElement('div');
             tooltip.className = 'skill-tooltip';
             tooltip.innerHTML = `
@@ -102,8 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <span>Proficiency: ${skillLevel}</span>
             `;
-            
-            // Add tooltip styles
+
             tooltip.style.cssText = `
                 position: absolute;
                 top: -100px;
@@ -133,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Scroll animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -147,13 +136,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Add animation classes to elements
     const animatedElements = document.querySelectorAll('.skill-item, .project-card, .about-text, .contact-item');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
 
-    // Counter animation for stats
     const statNumbers = document.querySelectorAll('.stat h4');
     
     function animateCounter(element) {
@@ -187,38 +174,30 @@ document.addEventListener('DOMContentLoaded', function() {
         statsObserver.observe(stat);
     });
 
-    // Contact form handling
     const contactForm = document.getElementById('contact-form');
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Get form data
+
         const formData = new FormData(this);
         const formObject = {};
         formData.forEach((value, key) => {
             formObject[key] = value;
         });
-        
-        // Show loading state
+
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
-        
-        // Simulate form submission (replace with actual form handling)
+
         setTimeout(() => {
-            // Show success message
             showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-            
-            // Reset form
+
             this.reset();
-            
-            // Reset button
+
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
-            
-            // Reset form labels
+
             const labels = this.querySelectorAll('label');
             labels.forEach(label => {
                 label.style.top = '';
@@ -228,7 +207,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     });
 
-    // Form input animations
     const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
     
     formInputs.forEach(input => {
@@ -241,14 +219,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.parentNode.classList.remove('focused');
             }
         });
-        
-        // Check if input has value on load
+
         if (input.value !== '') {
             input.parentNode.classList.add('focused');
         }
     });
 
-    // Notification system
     function showNotification(message, type = 'info') {
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
@@ -259,8 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <button class="notification-close">&times;</button>
         `;
-        
-        // Add notification styles
+
         notification.style.cssText = `
             position: fixed;
             top: 20px;
@@ -277,13 +252,11 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         document.body.appendChild(notification);
-        
-        // Animate in
+
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
         }, 100);
-        
-        // Close button 
+
         const closeBtn = notification.querySelector('.notification-close');
         closeBtn.addEventListener('click', () => {
             notification.style.transform = 'translateX(100%)';
@@ -291,8 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.removeChild(notification);
             }, 300);
         });
-        
-        // Auto > 5 
+
         setTimeout(() => {
             if (document.body.contains(notification)) {
                 notification.style.transform = 'translateX(100%)';
@@ -303,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // Particle hero 
     function createParticles() {
         const hero = document.querySelector('.hero');
         const particlesContainer = document.createElement('div');
@@ -337,8 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
             particlesContainer.appendChild(particle);
         }
     }
-    
-    // Add CSS
+
     const particleStyles = document.createElement('style');
     particleStyles.textContent = `
         @keyframes float-particle {
@@ -362,7 +332,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     createParticles();
 
-    // Theme toggle with localStorage support
     function createThemeToggle() {
         const themeToggle = document.createElement('button');
         themeToggle.className = 'theme-toggle';
@@ -415,7 +384,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     createThemeToggle();
 
-    // Cursor
     let mouseX = 0;
     let mouseY = 0;
     let trailElements = [];
@@ -456,13 +424,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }, index * 10);
         });
     });
-    
-    // desktop
+
     if (window.innerWidth > 768) {
         createCursorTrail();
     }
 
-    // Loading 
     function createLoader() {
         const loader = document.createElement('div');
         loader.className = 'page-loader';
@@ -530,8 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         document.head.appendChild(loaderStyles);
         document.body.appendChild(loader);
-    
-        // Hide > animation
+
         setTimeout(() => {
             loader.style.opacity = '0';
             setTimeout(() => {
@@ -540,7 +505,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
 
-    // REFRESh scroll ke #home 
     createLoader();
 
     setTimeout(() => {
@@ -558,7 +522,6 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.setItem('visited', 'true');
     }
 
-    // Project filtering 
     function initProjectFilter() {
         const filterButtons = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
@@ -582,7 +545,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Lazy loading for images
     function initLazyLoading() {
         const images = document.querySelectorAll('img[data-src]');
         
@@ -603,7 +565,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Skills animation
     function animateSkillBars() {
         const skillBars = document.querySelectorAll('.skill-progress');
         
@@ -623,7 +584,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Back to top button
     function createBackToTopButton() {
         const backToTop = document.createElement('button');
         backToTop.className = 'back-to-top';
@@ -647,8 +607,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         document.body.appendChild(backToTop);
-        
-        // Show/hide button 
+
         window.addEventListener('scroll', () => {
             if (window.scrollY > 500) {
                 backToTop.style.opacity = '1';
@@ -658,16 +617,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 backToTop.style.visibility = 'hidden';
             }
         });
-        
-        // Smooth scroll
+
         backToTop.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
-        
-        // Hover effects
+
         backToTop.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-3px)';
             this.style.boxShadow = 'var(--shadow-xl)';
@@ -681,7 +638,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     createBackToTopButton();
 
-    // Portfolio
     function createPortfolioModal() {
         const modal = document.createElement('div');
         modal.className = 'portfolio-modal';
@@ -728,8 +684,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         document.body.appendChild(modal);
-        
-        // Close modal
+
         const closeModal = () => {
             modal.style.opacity = '0';
             modal.style.visibility = 'hidden';
@@ -748,11 +703,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return modal;
     }
 
-    // Initialize 
     initLazyLoading();
     animateSkillBars();
-    
-    // Performance 
+
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -764,8 +717,7 @@ document.addEventListener('DOMContentLoaded', function() {
             timeout = setTimeout(later, wait);
         };
     }
-    
-    // Apply 
+
     const debouncedScrollHandler = debounce(() => {
     }, 10);
     
@@ -795,8 +747,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2000);
         }
     });
-    
-    //  rainbow animation
+
     const rainbowStyles = document.createElement('style');
     rainbowStyles.textContent = `
         @keyframes rainbow {
