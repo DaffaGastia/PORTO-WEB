@@ -804,7 +804,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Add rainbow animation
+    //  rainbow animation
     const rainbowStyles = document.createElement('style');
     rainbowStyles.textContent = `
         @keyframes rainbow {
